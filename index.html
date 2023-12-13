@@ -139,18 +139,18 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-md-8">
-              <form>
+              <form name="WPU contact form">
                 <div class="mb-3">
                   <label for="name" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="name">
+                  <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="email">
+                  <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
                 </div>
                 <div class="mb-3">
                   <label for="Pesan" class="form-label">Pesan</label>
-                  <textarea class="form-control" id="Pesan" rows="3"></textarea>
+                  <textarea class="form-control" id="Pesan" rows="3" name="pesan"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Kirim</button>
               </div>
@@ -170,6 +170,17 @@
       <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtHcr25X05Aeid3gnypYd0LR3Wo-hY4AzxqTcMh1pEvhwoOrHyfTnkJgk3qh0UsyEZMQ/exec'
+    const form = document.forms['WPU contact form']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
   </script>
 </body>
 </html>
